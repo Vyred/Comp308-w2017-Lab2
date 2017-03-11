@@ -10,8 +10,8 @@
           <table class="table table-bordered table-striped table-hover">
             <tr>
               <th class="text-center">Name</th>
-              <th class="text-center">Cost</th>
-              <th class="text-center">Rating</th>
+              <th class="text-center">Phone Number</th>
+              <th class="text-center">Email</th>
               <th class="text-center">Edit</th>
               <th class="text-center">Remove</th>
             </tr>
@@ -19,8 +19,8 @@
             <% for (let count = 0; count < contacts.length; count++) { %>
             <tr>
               <td class="text-center"><%= contacts[count].name %></td>
-              <td class="text-center"><%= contacts[count].cost %></td>
-              <td class="text-center"><%= contacts[count].rating %></td>
+              <td class="text-center"><%= contacts[count].phoneNumber %></td>
+              <td class="text-center"><%= contacts[count].email %></td>
               <td class="text-center">
               <a href="/contacts/<%= contacts[count]._id %>" class="btn btn-primary">
               <i class="fa fa-pencil-square-o"></i> Edit</a>

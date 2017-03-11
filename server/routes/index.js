@@ -53,7 +53,13 @@ router.get('/services', (req, res, next) => {
    });
 });
 
-
+/* GET contact me page. */
+router.get('/contact/me', requireAuth, (req, res, next) => {
+  res.render('content/contact-me', {
+    title: 'Contact Me',
+    displayName: req.user ? req.user.displayName : ''
+   });
+});
 
 /* GET contact page. */
 router.get('/contact', requireAuth, (req, res, next) => {

@@ -52,8 +52,8 @@ router.post('/add', requireAuth, (req, res, next) => {
 
     let newContact = contact({
       "name": req.body.name,
-      "cost": req.body.cost,
-      "rating": req.body.rating
+      "phoneNumber": req.body.phoneNumber,
+      "email": req.body.email
     });
 
     contact.create(newContact, (err, contact) => {
@@ -101,8 +101,8 @@ router.post('/:id', requireAuth, (req, res, next) => {
      let updatedContact = contact({
        "_id": id,
       "name": req.body.name,
-      "cost": req.body.cost,
-      "rating": req.body.rating
+      "phoneNumber": req.body.phoneNumber,
+      "email": req.body.email
     });
 
     contact.update({_id: id}, updatedContact, (err) => {
