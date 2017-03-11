@@ -8,8 +8,8 @@ let passport = require('passport');
 let UserModel = require('../models/users');
 let User = UserModel.User; // alias for User Model - User object
 
-// define the game model
-let game = require('../models/games');
+// define the contact model
+let contact = require('../models/contacts');
 
 // create a function to check if the user is authenticated
 function requireAuth(req, res, next) {
@@ -24,19 +24,49 @@ function requireAuth(req, res, next) {
 router.get('/', (req, res, next) => {
   res.render('content/index', {
     title: 'Home',
-    games: '',
+    contacts: '',
     displayName: req.user ? req.user.displayName : ''
    });
 });
 
-/* GET contact page. */
-router.get('/contact', (req, res, next) => {
-  res.render('content/contact', {
-    title: 'Contact',
-    games: '',
+/* GET about page. */
+router.get('/about', (req, res, next) => {
+  res.render('content/about', {
+    title: 'About',
     displayName: req.user ? req.user.displayName : ''
    });
 });
+
+/* GET ptojects page. */
+router.get('/projects', (req, res, next) => {
+  res.render('content/projects', {
+    title: 'About',
+    displayName: req.user ? req.user.displayName : ''
+   });
+});
+
+/* GET services page. */
+router.get('/services', (req, res, next) => {
+  res.render('content/services', {
+    title: 'Services',
+    displayName: req.user ? req.user.displayName : ''
+   });
+});
+
+
+
+/* GET contact page. */
+router.get('/contact', requireAuth, (req, res, next) => {
+  res.render('contacts/index', {
+    title: 'Contact',
+    contacts: '',
+    displayName: req.user ? req.user.displayName : ''
+   });
+});
+
+//////////////////////////////////////////////////////////
+//Login and Registration
+//////////////////////////////////////////////////////////////
 
 // GET /login - render the login view
 router.get('/login', (req, res, next)=>{
@@ -45,19 +75,19 @@ router.get('/login', (req, res, next)=>{
     // render the login page
     res.render('auth/login', {
       title: "Login",
-      games: '',
+      contacts: '',
       messages: req.flash('loginMessage'),
       displayName: req.user ? req.user.displayName : ''
     });
     return;
   } else {
-    return res.redirect('/games'); // redirect to games list
+    return res.redirect('/contacts'); // redirect to contacts list
   }
 });
 
 // POST /login - process the login attempt
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/games',
+  successRedirect: '/contacts',
   failureRedirect: '/login',
   failureFlash: 'bad login'
 }));
@@ -69,13 +99,13 @@ router.get('/register', (req, res, next)=>{
     // render the registration page
       res.render('auth/register', {
       title: "Register",
-      games: '',
+      contacts: '',
       messages: req.flash('registerMessage'),
       displayName: req.user ? req.user.displayName : ''
     });
     return;
   } else {
-    return res.redirect('/games'); // redirect to games list
+    return res.redirect('/'); // redirect to home list
   }
 });
 
@@ -97,14 +127,14 @@ router.post('/register', (req, res, next)=>{
         }
         return res.render('auth/register', {
           title: "Register",
-          games: '',
+          contacts: '',
           messages: req.flash('registerMessage'),
           displayName: req.user ? req.user.displayName : ''
         });
       }
       // if registration is successful
       return passport.authenticate('local')(req, res, ()=>{
-        res.redirect('/games');
+        res.redirect('/contacts');
       });
     });
 });
@@ -114,5 +144,6 @@ router.get('/logout', (req, res, next)=>{
   req.logout();
   res.redirect('/'); // redirect to the home page
 });
+
 
 module.exports = router;

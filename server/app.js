@@ -31,7 +31,7 @@ db.once('open', () => {
 
 // define routers
 let index = require('./routes/index'); // top level routes
-let games = require('./routes/games'); // routes for games
+let contacts = require('./routes/contacts'); // routes for contacts
 
 let app = express();
 
@@ -61,7 +61,7 @@ app.use(passport.session());
 
 // route redirects
 app.use('/', index);
-app.use('/games', games);
+app.use('/contacts', contacts);
 
 // Passport User Configuration
 let UserModel = require('./models/users');
@@ -71,20 +71,20 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 // Handle 404 Errors
-  app.use(function(req, res) {
-      res.status(400);
-     res.render('errors/404',{
-      title: '404: File Not Found'
-    });
+app.use(function (req, res) {
+  res.status(400);
+  res.render('errors/404', {
+    title: '404: File Not Found'
   });
+});
 
-  // Handle 500 Errors
-  app.use(function(error, req, res, next) {
-      res.status(500);
-      res.render('errors/500', {
-        title:'500: Internal Server Error',
-        error: error
-      });
+// Handle 500 Errors
+app.use(function (error, req, res, next) {
+  res.status(500);
+  res.render('errors/500', {
+    title: '500: Internal Server Error',
+    error: error
   });
+});
 
 module.exports = app;
