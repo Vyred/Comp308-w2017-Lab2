@@ -1,5 +1,5 @@
-module.exports = {
+//module.exports = {
   //local MongoDB deployment ->
-  "URI": "mongodb://localhost/contactsDB"
-  //Remote MongoDB deployment -> let URI = "mongodb://thomas:123456@ds054999.mlab.com:54999/videogames";
-};
+  //"URI": "mongodb://localhost/contactsDB"
+   mongoose.connect(process.env.URI || config.URI);
+//};
