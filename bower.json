@@ -1,6 +1,6 @@
 {
   "name": "comp308-w2017-lab2",
-  "description": "## Welcome to Lesson 6 - Authentication with Passport",
+  "description": "## Lab 2 Authentication with Passport",
   "main": "server.js",
   "authors": [
     "Matthew Yaworski"
@@ -11,7 +11,7 @@
     "ExpressJS",
     "EJS"
   ],
-  "homepage": "https://github.com/CentennialCollege/COMP308-W2017-Lesson6B",
+  "homepage": "https://github.com/Vyred/Comp308-w2017-Lab2",
   "ignore": [
     "**/.*",
     "node_modules",
