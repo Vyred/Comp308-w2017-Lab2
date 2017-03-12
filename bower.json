@@ -1,9 +1,9 @@
 {
-  "name": "comp308-w2017-lesson6b",
+  "name": "comp308-w2017-lab2",
   "description": "## Welcome to Lesson 6 - Authentication with Passport",
   "main": "server.js",
   "authors": [
-    "Tom Tsiliopoulos"
+    "Matthew Yaworski"
   ],
   "license": "ISC",
   "keywords": [
